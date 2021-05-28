@@ -1,0 +1,11 @@
+toplevel_hostgroups:
+  - { name: "rhel8_base", operatingsystem: "RedHat 8.3", content_source: "capsule-server1", environment: "Library", locations: [ "Location1", "Location2" ], content_view: "CV1", parameters: [
+      { 'name': "paramater_name", 'parameter_type': "string", 'value': "parameter_value" }
+      ]
+    }
+
+nested_hostgroups:
+  - { name: "subGroup1", environment: "Library", locations: [ "Location1" ], content_view: "CV2", parent: "rhel8_base", parameters: [
+      { 'name': "paramater_name", 'parameter_type': "string", 'value': "parameter_value" }
+      ] 
+    }

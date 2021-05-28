@@ -1,0 +1,61 @@
+- name: "Create or update Red Hat Enterprise Linux Server 8 content views" 
+  redhat.satellite.content_view: 
+    name: "Red Hat {{ item.release_ver }}" 
+    server_url: "{{ satellite_server }}" 
+    username: "{{ username }}" 
+    password: "{{ password }}" 
+    organization: "{{ organization }}" 
+    repositories: 
+      - name: "Red Hat Enterprise Linux 8 for x86_64 - BaseOS RPMs {{ item.release_ver }}" 
+        product: "{{ item.product_name }}" 
+      - name: "Red Hat Enterprise Linux 8 for x86_64 - AppStream RPMs {{ item.release_ver }}" 
+        product: "{{ item.product_name }}" 
+      - name: "Red Hat Satellite Tools 6.7 for RHEL 8 x86_64 RPMs" 
+        product: "{{ item.product_name }}" 
+  with_items: "{{ rhel8_releases }}" 
+
+- name: "Publish Content Views" 
+  redhat.satellite.content_view_version: 
+    server_url: "{{ satellite_server }}" 
+    username: "{{ username }}" 
+    password: "{{ password }}" 
+    organization: "{{ organization }}" 
+    content_view: "Red Hat {{ item.release_ver }}" 
+    lifecycle_environments: 
+      - Library 
+#      - Development 
+#      - Testing 
+#      - Production 
+    version: "1.0" 
+    state: present 
+  with_items: "{{ rhel8_releases }}" 
+
+- name: "Create or update Red Hat Enterprise Linux Server 7 content views" 
+  redhat.satellite.content_view: 
+    name: "Red Hat {{ item.release_ver }}" 
+    server_url: "{{ satellite_server }}" 
+    username: "{{ username }}" 
+    password: "{{ password }}" 
+    organization: "{{ organization }}" 
+    repositories: 
+      - name: "Red Hat Enterprise Linux 7 Server RPMs x86_64 {{ item.release_ver }}" 
+        product: "{{ item.product_name }}" 
+      - name: "Red Hat Satellite Tools 6.7 for RHEL 7 Server RPMs x86_64"
+        product: "{{ item.product_name }}" 
+  with_items: "{{ rhel7_releases }}" 
+
+- name: "Publish Content Views" 
+  redhat.satellite.content_view_version: 
+    server_url: "{{ satellite_server }}" 
+    username: "{{ username }}" 
+    password: "{{ password }}" 
+    organization: "{{ organization }}" 
+    content_view: "Red Hat {{ item.release_ver }}" 
+    lifecycle_environments: 
+      - Library 
+#      - Development 
+#      - Testing 
+#      - Production 
+    version: "1.0" 
+    state: present 
+  with_items: "{{ rhel7_releases }}" 

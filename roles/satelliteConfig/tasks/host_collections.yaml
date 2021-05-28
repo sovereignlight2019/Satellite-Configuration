@@ -1,0 +1,10 @@
+- name: Create Host Collections
+  redhat.satellite.host_collection:
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    organization: "{{ organization }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    server_url: "{{ satellite_server }}"
+    state: "{{ item.state }}"
+  with_items: "{{ host_collections }}"

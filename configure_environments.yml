@@ -1,0 +1,6 @@
+---
+- hosts: all
+
+  tasks:
+  - name: Configure LifeCycle Environments
+    include_tasks: roles/satelliteConfig/tasks/lifecycle_envs.yaml

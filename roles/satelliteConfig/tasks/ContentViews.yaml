@@ -1,0 +1,10 @@
+- name: "Create or update Red Hat Enterprise Linux Server 7 content views"
+  redhat.satellite.content_view:
+    name: "{{ item.name }}"
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    organization: "{{ organization }}"
+    repositories: "{{ item.repositories }}"
+  with_items:
+    - "{{ contentViews }}"

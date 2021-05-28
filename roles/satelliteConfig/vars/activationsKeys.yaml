@@ -1,0 +1,9 @@
+activationKeys:
+  - { name: "activationkey-1", 
+      subscriptions: { 'pool_id': "xxxxxxxxxxx" },
+      environment: "Development",
+      contentview: "CV1",
+      repos: "Red Hat 8.3"
+      release: "8.3"
+    }
+

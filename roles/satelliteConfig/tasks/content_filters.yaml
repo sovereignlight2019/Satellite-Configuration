@@ -1,0 +1,29 @@
+- name: Monthly Errata Update Filter
+  redhat.satellite.content_view_filter:
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    organization: "{{ organization }}"
+    name: "Monthly Errata Filter"
+    description: "Content filter to adhere to patching policy"
+    content_view: "{{ item.name }}"
+    filter_type: "erratum"
+    end_date: "{{ cur_year }}-{{ cur_month }}-01"
+    types: ["bugfix", "enhancement"]
+    inclusion: true
+  with_items: "{{ contentViews }}"
+
+- name: Daily Security Errata Update Filter
+  redhat.satellite.content_view_filter:
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    organization: "{{ organization }}"
+    name: "Daily Security Errata Filter"
+    description: "Content filter to adhere to security patching policy"
+    content_view: "{{ item.name }}"
+    filter_type: "erratum"
+    end_date: "{{ cur_year }}-{{ cur_month }}-{{ cur_day }}"
+    types: ["security"]
+    inclusion: true
+  with_items: "{{ contentViews }}"

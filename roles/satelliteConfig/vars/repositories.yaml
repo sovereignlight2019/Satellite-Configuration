@@ -1,0 +1,7 @@
+repositories:
+  - name: "repository1"
+    product_name: "Product1"
+    url: "https://product1.url/rpms/"
+    state: "present"
+    content_type: gpg_key
+    content: "{{ lookup('file', 'files/PRODUCT1-GPG-KEY') }}"

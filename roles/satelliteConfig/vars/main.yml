@@ -1,0 +1,14 @@
+---
+# vars file for /etc/ansible/roles/satelliteConfig
+
+- include_vars:platform.yaml
+- include_vars:environments.yaml
+- include_vars:locations.yaml
+- include_vars:hostgroups.yaml
+- include_vars:rhelReleases.yaml
+- include_vars:repositories.yaml
+- include_vars:operatingSystems.yaml
+- include_vars:contentViews.yaml
+- include_vars:compositeContentViews.yaml
+- include_vars:activationsKeys.yaml
+- include_vars:hostCollections.yaml

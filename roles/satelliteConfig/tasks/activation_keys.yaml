@@ -1,0 +1,18 @@
+- name: "Create Activation Keys"
+  redhat.satellite.activation_key:
+    name: "{{ item.name }}"
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    organization: "{{ organization }}"
+    lifecycle_environment: "{{ item.environment }}"
+    content_view: "{{ item.contentview }}"
+    subscriptions:
+      - "{{ item.subscriptions }}"
+    content_overrides:
+      - label: "{{ item.repos }}"
+        override: enabled
+    auto_attach: True
+    release_version: "{{ item.release }}"
+    service_level: "Standard"
+  with_items: "{{ activation_keys }}"

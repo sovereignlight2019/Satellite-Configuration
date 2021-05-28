@@ -1,0 +1,22 @@
+- name: Create Locations
+  redhat.satellite.location:
+    name: "{{ item.name }}"
+    parameters: "{{ item.parameters }}"
+    organizations: "{{ organization }}"
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    state: present
+  with_items: "{{ locations }}"
+
+- name: Create Domain
+  redhat.satellite.domain:
+    name: "{{ organization }}"
+    description: "{{ description }}"
+    locations:
+      - "{{ item.name }}"
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    state: present
+  with_items: "{{ locations }}"

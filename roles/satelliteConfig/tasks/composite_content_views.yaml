@@ -1,0 +1,24 @@
+- name: "Create Composite Content Views"
+  redhat.satellite.content_view:
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    organization: "{{ organization }}"
+    name: "{{ item.name }}"
+    composite: true
+    auto_publish: true
+    components: "{{ item.views }}"
+  with_items: "{{ composite_views }}"
+
+- name: "Publish Composite Content Views"
+  redhat.satellite.content_view_version:
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    organization: "{{ organization }}"
+    content_view: "{{ item.name }}"
+    lifecycle_environments:
+      - Library
+    version: "1.0"
+    state: present
+  with_items: "{{ composite_views }}"

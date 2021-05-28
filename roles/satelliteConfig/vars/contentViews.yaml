@@ -1,0 +1,5 @@
+contentViews:
+  - { name: "CV-1", repositories: [ 
+      { 'name':"repository-1", 'product':"product-1" } 
+      ] 
+    }

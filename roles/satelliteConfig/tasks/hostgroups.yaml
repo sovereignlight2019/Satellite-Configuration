@@ -1,0 +1,28 @@
+- name: Create Top Level HostGroup/s
+  redhat.satellite.hostgroup:
+    server_url: "{{ satellite_server }}
+    username: "{{ username }}"
+    password: "{{ password }}"
+    organization: "{{ organization }}"
+    name: "{{ item.name }}"
+    operatingsystem: "{{ item.operatingsystem }}"
+    content_view: "{{ item.content_view }}"
+    locations: "{{ item.locations }}"
+    lifecycle_environment: "{{ item.environment }}"
+    parameters: "{{ item.parameters }}"
+  with_items: "{{ toplevel_hostgroups }}"
+
+- name: Create Top Level HostGroup/s
+  redhat.satellite.hostgroup:
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    organization: "{{ organization }}"
+    name: "{{ item.name }}"
+    operatingsystem: "{{ item.operatingsystem }}"
+    content_view: "{{ item.content_view }}"
+    locations: "{{ item.locations }}"
+    lifecycle_environment: "{{ item.environment }}"
+    parameters: "{{ item.parameters }}"
+    parent: "{{ item.parent }}"
+  with_items: "{{ nested_hostgroups }}"

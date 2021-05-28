@@ -1,0 +1,14 @@
+operatingSystems:
+  - name: Redhat
+    family: Redhat
+    release: 7
+    release_ver: 9
+    arch: x86_64
+    parameters:
+
+  - name: Redhat
+    family: Redhat
+    release: 8
+    release_ver: 3
+    arch: x86_64
+    parameters:

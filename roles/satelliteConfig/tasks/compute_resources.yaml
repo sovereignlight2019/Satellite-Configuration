@@ -1,0 +1,18 @@
+- name: Create proxmox compute resource
+  redhat.satellite.compute_resource:
+    name: OpenStack Sandpit Common Services
+    locations:
+      - Sandpit
+      - Sandpit/RHV
+    organizations:
+      - ITPC
+    provider: openstack
+    provider_params:
+      url: https://proxmox.example.com:8006/api2/json
+      user: root@pam
+      password: secretpassword
+      ssl_verify_peer: true
+    server_url: "https://satellite.example.com"
+    username: "admin"
+    password: "changeme"
+    state: present

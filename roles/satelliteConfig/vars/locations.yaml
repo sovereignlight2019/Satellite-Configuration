@@ -1,0 +1,5 @@
+locations:
+  - { name: "Location1", parent: "", parameters: [
+      { 'name': "paramater_name", 'parameter_type': "string", 'value': "parameter_value" }
+      ]
+    }

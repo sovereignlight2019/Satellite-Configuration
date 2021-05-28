@@ -1,0 +1,72 @@
+- name: "Enable RHEL 7 RPMs repositories" 
+  redhat.satellite.repository_set: 
+    organization: "{{ organization }}" 
+    product: "Red Hat Enterprise Linux Server" 
+    server_url: "{{ satellite_server }}" 
+    username: "{{ username }}" 
+    password: "{{ password }}" 
+    label: "{{ item.label }}" 
+    repositories: 
+    - releasever: "{{ item.release_ver }}" 
+      basearch: "{{ item.basearch }}" 
+    state: "{{ item.state }}" 
+    validate_certs: no 
+  with_items: "{{ rhel7_releases }}" 
+
+- name: "Enable RHEL 8 RPMs repositories" 
+  redhat.satellite.repository_set: 
+    organization: "{{ organization }}" 
+    server_url: "{{ satellite_server }}" 
+    username: "{{ username }}" 
+    password: "{{ password }}" 
+    label: "{{ item.label }}" 
+    repositories: 
+    - releasever: "{{ item.release_ver }}" 
+    state: "{{ item.state }}" 
+    validate_certs: no 
+  with_items: "{{ rhel8_releases }}" 
+
+- name: "Enable Satellite Capsule Repo" 
+  redhat.satellite.repository_set: 
+    organization: "{{ organization }}" 
+    server_url: "{{ satellite_server }}" 
+    username: "{{ username }}" 
+    password: "{{ password }}" 
+    label: "rhel-7-server-satellite-capsule-{{ satellite_release }}-rpms" 
+    repositories: 
+    - basearch : x86_64 
+    state: enabled 
+
+- name: "Enable Satellite Capsule Repo" 
+  redhat.satellite.repository_set: 
+    organization: "{{ organization }}" 
+    server_url: "{{ satellite_server }}" 
+    username: "{{ username }}" 
+    password: "{{ password }}" 
+    label: "rhel-7-server-satellite-maintenance-6-rpms" 
+    repositories: 
+    - basearch : x86_64 
+    state: enabled 
+
+- name: "Enable Satellite Tools Repo" 
+- name: "Enable Satellite Tools Repo" 
+  redhat.satellite.repository_set: 
+    organization: "{{ organization }}" 
+    server_url: "{{ satellite_server }}" 
+    username: "{{ username }}" 
+    password: "{{ password }}" 
+    label: "rhel-7-server-satellite-tools-{{ satellite_release }}-rpms" 
+    repositories: 
+    - basearch : x86_64 
+    state: enabled 
+
+- name: "Enable Satellite Tools 8 Repo" 
+  redhat.satellite.repository_set: 
+    organization: "{{ organization }}" 
+    server_url: "{{ satellite_server }}" 
+    username: "{{ username }}" 
+    password: "{{ password }}" 
+    #name: "Red Hat Satellite Tools 6.7 for RHEL 8 x86_64 RPMs" 
+    label: "satellite-tools-{{ satellite_release}}-for-rhel-8-x86_64-rpms" 
+    all_repositories: true 
+    state: enabled 

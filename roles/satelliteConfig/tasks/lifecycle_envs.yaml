@@ -1,0 +1,32 @@
+- name: "Create Development Lifecycle Environment"
+  redhat.satellite.lifecycle_environment:
+    name: "Development"
+    label: "development"
+    prior: "Library"
+    organization: "{{ organization }}"
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    state: present
+
+- name: "Create Testing Lifecycle Environment"
+  redhat.satellite.lifecycle_environment:
+    name: "Testing"
+    label: "testing"
+    prior: "Development"
+    organization: "{{ organization }}"
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    state: present
+
+- name: "Create Production Lifecycle Environment"
+  redhat.satellite.lifecycle_environment:
+    name: "Production"
+    label: "production"
+    prior: "Testing"
+    organization: "{{ organization }}"
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    state: present

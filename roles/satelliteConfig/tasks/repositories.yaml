@@ -1,0 +1,71 @@
+- name: "Create Content Credentials"
+  redhat.satellite.content_credential:
+    organization: "{{ organization }}"
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    name: "{{ item.name }}"
+    content_type: "{{ item.content_type }}"
+    content: "{{ item.content }}"
+    state: "{{ item.state }}"
+  with_items: "{{ repositories }}"
+
+- name: "Create Product"
+  redhat.satellite.product:
+    name: "{{ item.product_name }}"
+    organization: "{{ organization }}"
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    state: "{{ item.state }}"
+    gpg_key: "{{ item.name }}"
+  with_items: "{{ repositories }}"
+
+- name: "Create Repositories"
+  redhat.satellite.repository:
+    name: "{{ item.name }}"
+    organization: "{{ organization }}"
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    content_type: "yum"
+    url: "{{ item.url }}"
+    state: "{{ item.state }}"
+    product: "{{ item.product_name }}"
+    mirror_on_sync: true
+    download_policy: "on_demand"
+    gpg_key: "{{ item.name }}"
+  with_items: "{{ repositories }}"
+
+- name: "Create or update Product Content View"
+  redhat.satellite.content_view:
+    name: "{{ item.product_name }}"
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    organization: "{{ organization }}"
+    repositories:
+      - name: "{{ item.name }}"
+        product: "{{ item.product_name }}"
+  with_items: "{{ repositories }}"
+
+- name: "Sync repository"
+  redhat.satellite.repository_sync:
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    organization: "{{ organization }}"
+    repository: "{{ item.name }}"
+    product: "{{ item.product_name }}"
+  with_items: "{{ repositories }}"
+
+- name: "Publish Content View"
+  redhat.satellite.content_view_version:
+    server_url: "{{ satellite_server }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    organization: "{{ organization }}"
+    content_view: "{{ item.product_name }}"
+    lifecycle_environments:
+      - Library
+  with_items: "{{ repositories }}"

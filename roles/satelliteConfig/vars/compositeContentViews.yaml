@@ -1,0 +1,6 @@
+compositeContentViews:
+  - { name: CCV-1, views: [
+      { 'content-view':"CV-1", 'latest':"True"},
+      { 'content-view':"CV-1", 'latest':"True"}
+      ]
+    }

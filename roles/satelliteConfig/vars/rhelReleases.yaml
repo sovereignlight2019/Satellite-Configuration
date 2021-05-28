@@ -1,0 +1,24 @@
+rhel7_releases:
+  - name: "Red Hat Enterprise 7 Server (RPMS)"
+    label: rhel-7-server-rpms
+    release_ver: "7.9"
+    basearch: x86_64
+    product_name: "Red Hat Enterprise Linux Server"
+    sync_frequency: "syncPlan1"
+    state: enabled
+
+rhel8_releases:
+  - name: "Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMS)"
+    label: "rhel-8-for-x86_64-baseos-rpms"
+    release_ver: 8.3
+    product_name: "Red Hat Enterprise Linux for x86_64"
+    sync_frequency: "syncPlan1"
+    state: enabled
+
+  - name: "Red Hat Enterprise Linux 8 for x86_64 - AppStream (RPMS)"
+    label: "rhel-8-for-x86_64-appstream-rpms"
+    release_ver: 8.3
+    product_name: "Red Hat Enterprise Linux for x86_64"
+    sync_frequency: "syncPlan1"
+    state: enabled
+    

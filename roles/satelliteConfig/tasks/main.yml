@@ -1,0 +1,5 @@
+---
+# tasks file for /etc/ansible/roles/satelliteConfig
+- include_tasks: locations:yaml
+- include_tasks: environments.yaml
+#- include_tasks: hostgroups.yaml

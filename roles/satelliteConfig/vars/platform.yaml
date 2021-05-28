@@ -1,0 +1,12 @@
+# Subscription Allocation manifest file (if not using simple access)
+manifest_file: "files/manifest_file.zip"
+
+# OS Releases
+rhel8_release_ver: "8.3"
+rhel7_release_ver: "7.9"
+satellite_release: "6.8"
+
+# Repository Sync Plan
+sync_frequency: dailySync
+
+
